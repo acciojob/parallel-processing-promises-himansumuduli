@@ -8,7 +8,7 @@ const images = [
   { url: "https://picsum.photos/id/239/200/300" },
 ];
 
-function downlordImages(images) {
+function downlordImage(image) {
 	return new Promise((resolve,reject) =>{
 		const img = new Image();
 		img.onload =() => resolve(img)
@@ -19,16 +19,16 @@ function downlordImages(images) {
 }
 
 function displayImages(images) {
-	images.ForEach(img => output.appendChild(img));
+	images.forEach(img => output.appendChild(img));
 	
 }
 
 btn.addEventListener('click',() =>{
-	const downlordPromises = images.map((image) => downlordImages(image));
+	const downlordPromises = images.map((image) => downlordImage(image));
 Promise.all(downlordPromises)
 	.then(displayImages)
 	// .then((images) => displayImages(images))
-	.catch(error =>console.log(error))
+	.catch(error => console.log(error))
 })
 
 
